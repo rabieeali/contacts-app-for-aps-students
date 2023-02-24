@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts App</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <!-- JS -->
+    <script src="js/jquery.js" defer></script>
+    <script src="js/materialize.min.js" defer></script>
+    <script src="js/index.js" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <div>
+            <div style="display: flex;justify-content: space-between;align-items: baseline;">
+
+                <h1>Contact List</h1>
+                <!-- Modal Trigger -->
+                <a class="indigo waves-effect waves-light btn modal-trigger" href="#modal1">Add New Contact</a>
+            </div>
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <form id="add-form" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Name" id="name" type="text" class="validate">
+                                <label for="name">Name</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input placeholder="Email" id="email" type="text" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input placeholder="Phone Number" id="phone" type="text" class="validate">
+                                <label for="phone">Phone Number</label>
+                            </div>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <section style="margin: 20px 0;" class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+            <div class="progress hide">
+                <div class="indeterminate"></div>
+            </div>
+        </section>
+    </main>
+
+
+</body>
+
+</html>
