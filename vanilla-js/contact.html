@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,36 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="/index.css">
     <!-- JS -->
-    <script src="js/jquery.js" defer></script>
-    <script src="js/materialize.min.js" defer></script>
-    <script src="js/contact.js" defer></script>
+    <script type="module" src="/contact.js" defer></script>
 </head>
 
 <body>
-
-    <main class="container">
-        <h1>Edit <span class="user-name"></span></h1>
-        <div style="border: 1px solid #f1f5f9; padding: 1rem; border-radius: 10px;" class="col">
-            <form id="edit-form" class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input placeholder="Name" id="name" type="text" class="validate">
-                        <label for="name">Name</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <input placeholder="Email" id="email" type="text" class="validate">
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <input placeholder="Phone Number" id="phone" type="text" class="validate">
-                        <label for="phone">Phone Number</label>
-                    </div>
-                </div>
-                <button class="btn waves-effect waves-light" type="submit">Add</button>
-            </form>
-        </div>
+    <header class="navbar shadow-2xl bg-slate-900">
+        <h1 id="user-name" class="mx-auto text-center text-3xl font-semibold my-5"></h1>
+    </header>
+    <main class="container px-10 my-10">
+        <button id="back-btn" class="btn capitalize block ml-auto">Go Back</button>
+        <form autocomplete="off" id="edit-form" class="rounded-3xl" style="width:480px;margin:auto;padding: 1rem;border:1px solid #f1f5f91d">
+            <div class="flex flex-col gap-2">
+                <input placeholder="Name" id="name" type="text" class="input input-bordered w-full">
+                <input placeholder="Email" id="email" type="text" class="input input-bordered w-full">
+                <input placeholder="Phone Number" id="phone" type="text" class="input input-bordered w-full">
+            </div>
+            <button class="btn btn-outline btn-accent block ml-auto mt-5" type="submit">Submit</button>
+        </form>
     </main>
 
 </body>

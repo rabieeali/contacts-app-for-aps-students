@@ -1,17 +1,22 @@
 {
-  "name": "js-project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "contacts-list",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "live-server --port=3000",
-    "server": "json-server --watch db.json --port=3500"
+    "dev": "vite",
+    "server": "json-server --watch db.json --port 3500",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "vite": "^4.1.0"
+  },
   "dependencies": {
-    "json-server": "^0.17.2",
-    "live-server": "^1.2.2"
+    "daisyui": "^2.51.0",
+    "json-server": "^0.17.2"
   }
 }

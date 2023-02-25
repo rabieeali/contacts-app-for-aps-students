@@ -1,6 +1,14 @@
 const baseUrl = 'http://localhost:3500'
-const id = localStorage.getItem('id')
 const editForm = document.querySelector('#edit-form')
+const backBtn = document.querySelector('#back-btn')
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+const username = document.querySelector('#user-name')
+
+
+backBtn.addEventListener('click', () => {
+    window.history.back()
+})
 
 const inputLoading = () => {
     editForm.querySelector('#name').value = 'Loading ...'
@@ -15,14 +23,13 @@ const editUserHandler = async (user) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     })
-    window.location.href = 'index.html'
+    window.location = 'index.html'
 }
-
 
 
 const getUser = async () => {
     inputLoading()
-    
+
     try {
         const response = await fetch(`${baseUrl}/contacts/${id}`)
         const contact = await response.json()
@@ -30,6 +37,8 @@ const getUser = async () => {
         editForm.querySelector('#name').value = contact.name
         editForm.querySelector('#email').value = contact.email
         editForm.querySelector('#phone').value = contact.phone
+
+        username.textContent = `Edit ${contact.name}`
 
         editForm.addEventListener('submit', (e) => {
             e.preventDefault()

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,61 +7,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts App</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="/spinner.css">
+    <link rel="stylesheet" href="/index.css">
     <!-- JS -->
-    <script src="js/jquery.js" defer></script>
-    <script src="js/materialize.min.js" defer></script>
-    <script src="js/index.js" defer></script>
+    <script type="module" src="/index.js" defer></script>
 </head>
 
 <body>
-    <main class="container">
-        <div>
-            <div style="display: flex;justify-content: space-between;align-items: baseline;">
 
-                <h1>Contact List</h1>
-                <!-- Modal Trigger -->
-                <a class="indigo waves-effect waves-light btn modal-trigger" href="#modal1">Add New Contact</a>
-            </div>
+    <header class="navbar shadow-2xl bg-slate-900">
+        <h1 class="text-center mx-auto text-3xl font-semibold my-5">Contacts List</h1>
+    </header>
 
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal">
-                <div class="modal-content">
-                    <form id="add-form" class="col s12">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input placeholder="Name" id="name" type="text" class="validate">
-                                <label for="name">Name</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input placeholder="Email" id="email" type="text" class="validate">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input placeholder="Phone Number" id="phone" type="text" class="validate">
-                                <label for="phone">Phone Number</label>
-                            </div>
-                        </div>
-                        <button class="btn waves-effect waves-light" type="submit">Add</button>
-                    </form>
-                </div>
+    <main class="container px-10 my-10">
+
+        <!-- The button to open modal -->
+        <label for="my-modal-6" class="btn flex self-start ml-auto w-40 mb-5">Add New User</label>
+
+        <!-- Put this part before </body> tag -->
+        <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+        <div class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <label for="my-modal-6" class="block float-right">
+                    <img class="w-5 h-5 cursor-pointer" src="close.png" alt="close" />
+                </label>
+                <form  autocomplete="off" id="add-form">
+                    <h3 class="my-2 font-semibold">Add New User</h3>
+                    <div class="flex flex-col gap-2">
+                        <input placeholder="Name" id="name" type="text" class="input input-bordered w-full">
+                        <input placeholder="Email" id="email" type="text" class="input input-bordered w-full">
+                        <input placeholder="Phone Number" id="phone" type="text" class="input input-bordered w-full">
+                    </div>
+                    <div class="my-3 flex gap-1">
+                        <button class="btn btn-outline btn-accent capitalize block ml-auto" type="submit">add user</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <section style="margin: 20px 0;" class="table-section">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                </tbody>
-            </table>
-            <div class="progress hide">
-                <div class="indeterminate"></div>
+
+        <section class="table-section">
+            <div class="overflow-x-auto shadow-2xl">
+                <table class="table table-zebra w-full">
+
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+            <!-- spinner -->
+            <div id="spinner" class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </section>
     </main>

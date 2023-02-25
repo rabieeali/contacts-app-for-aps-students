@@ -1,15 +1,9 @@
 {
   "contacts": [
     {
-      "id": "1",
-      "name": "Ali",
-      "email": "ali@gmail.com",
-      "phone": "09121111111"
-    },
-    {
       "id": "2",
       "name": "Benyamin",
-      "email": "beny@gmail.com",
+      "email": "benyamin@gmail.com",
       "phone": "09122222222"
     },
     {
@@ -35,12 +29,6 @@
       "name": "Fereshte",
       "email": "fereshte@gmail.com",
       "phone": "09126666666"
-    },
-    {
-      "name": "reaza",
-      "email": "sda",
-      "phone": "11111",
-      "id": "8v1ttnH"
     }
   ]
 }
