@@ -8,3 +8,5 @@ crud with vanilla js, react redux, express
  Second) a RESTfull API with node.js and express.js and MongoDB
  
  Third) a React Redux App using react-redux and redux-thunk, material UI
+
+It's all going to be a real-world foundational project (mostly admin dahsboard) , done with honor for APS students
