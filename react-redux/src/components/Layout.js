@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
         <>
             <Navbar />
             <Container maxWidth="lg">
-                <Box sx={{ margin: '1rem 0', height: '100vh' }}>
+                <Box sx={{ margin: '3rem 0 10rem 0', height: '100vh' }}>
                     {children}
                 </Box>
             </Container>

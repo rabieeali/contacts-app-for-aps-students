@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import { colors } from '@mui/material';
+import { Box, CircularProgress, colors } from '@mui/material';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -19,6 +19,7 @@ import Paper from '@mui/material/Paper';
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
+import { Link } from "react-router-dom";
 
 
 const ContactsPage = ({ getContacts, loading, contacts, error }) => {
@@ -31,7 +32,10 @@ const ContactsPage = ({ getContacts, loading, contacts, error }) => {
     }, [])
 
     if (loading) {
-        return <p>Loading ...</p>
+        return (
+            <Box sx={{ display: 'grid', placeItems: 'center', height: '100vh' }}>
+                <CircularProgress />
+            </Box>)
     }
     if (error) {
         return <p>Error : {error}</p>
@@ -45,12 +49,12 @@ const ContactsPage = ({ getContacts, loading, contacts, error }) => {
 
             <TableContainer sx={{ margin: "3rem 0" }} component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead sx={{ bgcolor: colors.orange['600'] }}>
+                    <TableHead sx={{ bgcolor: colors.orange['700'] }}>
                         <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell align="center">Email</TableCell>
-                            <TableCell align="center">Phone</TableCell>
-                            <TableCell align="center">Actions</TableCell>
+                            <TableCell sx={{ color: '#fff' }}>Name</TableCell>
+                            <TableCell sx={{ color: '#fff' }} align="center">Email</TableCell>
+                            <TableCell sx={{ color: '#fff' }} align="center">Phone</TableCell>
+                            <TableCell sx={{ color: '#fff' }} align="center">Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -65,7 +69,7 @@ const ContactsPage = ({ getContacts, loading, contacts, error }) => {
                                 <TableCell align="center">{con.email}</TableCell>
                                 <TableCell align="center">{con.phone}</TableCell>
                                 <TableCell align="center">
-                                    <Button><EditIcon sx={{ color: colors.blue['700'] }} /></Button>
+                                    <Button component={Link} to={`/contacts/${con._id}`}><EditIcon sx={{ color: colors.blue['700'] }} /></Button>
                                     <Button><DeleteForeverIcon sx={{ color: colors.red['700'] }} /></Button>
                                 </TableCell>
                             </TableRow>
@@ -83,4 +87,14 @@ const mapStateToProps = state => ({
     error: state.contacts.error
 })
 
-export default connect(mapStateToProps, { getContacts })(ContactsPage)
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getContacts: () => {
+            dispatch(getContacts())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsPage)
