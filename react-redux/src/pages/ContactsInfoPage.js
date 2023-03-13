@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import { Button, CircularProgress } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { getCurrentContact } from '../redux/actions/getContacts'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -11,15 +11,32 @@ import { updateContact } from '../redux/actions/updateContacts'
 
 
 
-const ContactsInfoPage = ({ updateContact, getTheContact, currentContact, error, loading }) => {
+const ContactsInfoPage = ({ currentContact, error, loading }) => {
 
   const { id } = useParams()
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    dispatch(getCurrentContact(id))
+    // eslint-disable-next-line
+  }, [])
+
+
 
   const [updatedContact, setUpdatedContact] = useState({
     name: '',
     email: '',
     phone: ''
   })
+
+  useEffect(() => {
+    if (currentContact) {
+      setUpdatedContact({ ...currentContact })
+    }
+  }, [currentContact])
+
+
 
   const navigate = useNavigate()
 
@@ -30,9 +47,10 @@ const ContactsInfoPage = ({ updateContact, getTheContact, currentContact, error,
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(updatedContact)
-    updateContact(updatedContact)
-    navigate('/contacts')
+    if (id) {
+      dispatch(updateContact(updatedContact))
+      navigate("/contacts")
+    }
   }
 
 
@@ -42,10 +60,7 @@ const ContactsInfoPage = ({ updateContact, getTheContact, currentContact, error,
     }
   }, [currentContact])
 
-  useEffect(() => {
-    getTheContact(id)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+
 
   let content;
 
@@ -121,16 +136,7 @@ const mapStateToProps = state => ({
   error: state.contacts.error
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getTheContact: (id) => {
-      dispatch(getCurrentContact(id))
-    },
-    updateContact: (newCon) => {
-      dispatch(updateContact(newCon))
-    }
-  }
-}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactsInfoPage)
+
+export default connect(mapStateToProps)(ContactsInfoPage)

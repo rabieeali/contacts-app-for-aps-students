@@ -30,7 +30,9 @@ const getSingleContact = async (req, res) => {
 // @access - public
 
 const createNewContact = async (req, res) => {
-    const { name, email, phone } = req?.body
+
+    console.log(req.body)
+    const { name, email, phone } = req.body
     if (!name || !phone || !email) {
         return res.status(400).json({ 'message': 'name, phone and email are required' });
     }
@@ -65,33 +67,23 @@ const createNewContact = async (req, res) => {
 // @access - public
 
 const updateContact = async (req, res) => {
-    const { name, email, phone, id } = req?.body
-    if (!id) {
+    const { name, email, phone, _id } = req.body
+    console.log(req.body)
+    if (!_id) {
         return res.status(400).json({ 'message': 'ID parameter is required.' });
     }
 
-    const contact = await Contact.findOne({ _id: id }).exec();
+    const contact = await Contact.findOne({ _id }).exec();
     if (!contact) {
-        return res.status(204).json({ "message": `no contact matches ID ${id}.` });
-    }
-
-
-    // Check for duplicate email
-    const duplicateEmail = await Contact.findOne({ email }).lean().exec()
-    if (duplicateEmail) {
-        return res.status(409).json({ message: 'duplicate email' })
-    }
-
-    // Check for duplicate phone
-    const duplicatePhone = await Contact.findOne({ phone }).lean().exec()
-    if (duplicatePhone) {
-        return res.status(409).json({ message: 'duplicate phone' })
+        return res.status(204).json({ "message": `no contact matches ID ${_id}.` });
     }
 
     if (req.body?.name) contact.name = name;
     if (req.body?.email) contact.email = email;
     if (req.body?.phone) contact.phone = phone;
+
     const updatedContact = await contact.save();
+    
     res.json(updatedContact);
 }
 
@@ -100,11 +92,11 @@ const updateContact = async (req, res) => {
 // @access - public
 
 const deleteContact = async (req, res) => {
-    if (!req?.body?.id) return res.status(400).json({ 'message': 'contact ID required.' });
+    if (!req?.body?._id) return res.status(400).json({ 'message': 'contact ID required.' });
 
-    const contact = await Contact.findOne({ _id: req.body.id }).exec();
+    const contact = await Contact.findOne({ _id }).exec();
     if (!contact) {
-        return res.status(204).json({ "message": `no contact matches ID ${req.body.id}.` });
+        return res.status(204).json({ "message": `no contact matches ID ${req.body._id}.` });
     }
     const result = await contact.deleteOne(); //{ _id: req.body.id }
     res.json(result);

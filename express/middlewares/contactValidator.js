@@ -1,43 +1,27 @@
-const { check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
-exports.validateContact = [
-    check('name')
+const validateContact = [
+    body('name')
         .trim()
-        .escape()
         .not()
         .isEmpty()
-        .withMessage('name can not be empty')
-        .bail()
         .isLength({ min: 3 })
-        .withMessage('minimum 3 characters required')
-        .bail(),
+        .withMessage('minimum 3 characters required'),
 
-    check('email')
-        .trim()
-        .normalizeEmail()
-        .not()
-        .isEmpty()
-        // .withMessage('email can not be empty')
+    body('email')
         .isEmail()
-        .withMessage('invalid email address')
-        .bail(),
+        .withMessage('invalid email address'),
         
-        check('phone')
-        .trim()
-        .not()
-        .isEmpty()
-        // .withMessage('phone can not be empty')
-        .escape()
-        // .exists({ checkFalsy: true })
-        // .isLength({ min: 11, max: 11 })
+        body('phone')
         .matches(/^09[0|1|2|3|9][0-9]{8}$/)
-        .withMessage('invalid phone number')
-        .bail(),
+        .withMessage('invalid phone number'),
 
     (req, res, next) => {
-        const errors = validationResult(req);
+        const errors = validationResult(req); 
         if (!errors.isEmpty())
-            return res.status(422).json({ errors: errors.array() });
+            return res.status(400).json({ errors: errors.array() });
         next();
     },
 ];
+
+module.exports = { validateContact }

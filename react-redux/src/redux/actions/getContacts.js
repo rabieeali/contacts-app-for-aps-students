@@ -9,7 +9,10 @@ export const getContacts = () => {
 
             dispatch({ type: TYPES.GET_ALL_CONTACTS_REQUEST })
 
-            const response = await axios.get('contacts')
+            const response = await axios.get('contacts', {
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true
+            })
             const contacts = await response?.data
 
             dispatch({ payload: contacts, type: TYPES.GET_ALL_CONTACTS_SUCCESS })
@@ -28,7 +31,10 @@ export const getCurrentContact = (id) => {
     return async (dispatch) => {
         try {
             dispatch({ type: TYPES.GET_SINGLE_CONTACT_REQUEST })
-            const response = await axios.get(`/contacts/${id}`)
+            const response = await axios.get(`/contacts/${id}`, {
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true
+            })
             const contact = await response?.data
 
             dispatch({ payload: contact, type: TYPES.GET_SINGLE_CONTACT_SUCCESS })

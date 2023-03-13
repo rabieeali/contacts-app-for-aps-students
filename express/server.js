@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const app = express()
 const path = require('path')
 const cors = require('cors')
 const errorHandler = require('./middlewares/errorHandler')
@@ -10,7 +11,6 @@ const colors = require('colors');
 const corsOptions = require('./config/corsOptions')
 const PORT = process.env.PORT || 9000
 
-const app = express()
 
 connectDB();
 
@@ -18,7 +18,11 @@ app.use(credentials);
 
 app.use(cors(corsOptions));
 
+
 app.use(express.urlencoded({ extended: false }));
+
+app.use(express.json());
+
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 // static page routes

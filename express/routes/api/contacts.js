@@ -10,8 +10,8 @@ const {
 
 router.route('/')
     .get(getAllContacts)
-    .post(validateContact, createNewContact)
-    .put(validateContact, updateContact)
+    .post(createNewContact)
+    .put(updateContact)
     .delete(deleteContact)
 
 router.route('/:id')
