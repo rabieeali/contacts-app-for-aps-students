@@ -1,23 +1,25 @@
-import { Routes, Route } from 'react-router-dom'
-
-import ContactsInfoPage from './pages/ContactsInfoPage'
-import ContactsPage from './pages/ContactsPage'
-import GreetingPage from './pages/GreetingPage'
-import NotFound from './pages/NotFound'
-
-
+import { Route, Routes } from "react-router-dom";
+import NotFoundPage from "./pages/404";
+import AddNewContactPage from "./pages/AddNewContactPage";
+import GreetingPage from "./pages/GreetingPage";
+import HomePage from "./pages/HomePage";
+import UpdateContactPage from "./pages/UpdateContactPage";
 
 const App = () => {
-    return (
-        <>
-            <Routes>
-                <Route path='/' element={<GreetingPage />} />
-                <Route path='contacts' element={<ContactsPage />} />
-                <Route path='contacts/:id' element={<ContactsInfoPage />} />
-                <Route path='*' element={<NotFound />} />
-            </Routes>
-        </>
-    )
+
+  return (
+    <>
+
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path='/greeting' element={<GreetingPage />} />
+        <Route path='/add-new-contact' element={<AddNewContactPage />} />
+        <Route path='/update-contact/:id' element={<UpdateContactPage />} />
+        <Route path='*' element={<NotFoundPage />} />
+      </Routes>
+
+    </>
+  );
 }
 
-export default App
+export default App;

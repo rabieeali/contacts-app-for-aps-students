@@ -31,7 +31,6 @@ const getSingleContact = async (req, res) => {
 
 const createNewContact = async (req, res) => {
 
-    console.log(req.body)
     const { name, email, phone } = req.body
     if (!name || !phone || !email) {
         return res.status(400).json({ 'message': 'name, phone and email are required' });
@@ -67,8 +66,8 @@ const createNewContact = async (req, res) => {
 // @access - public
 
 const updateContact = async (req, res) => {
+
     const { name, email, phone, _id } = req.body
-    console.log(req.body)
     if (!_id) {
         return res.status(400).json({ 'message': 'ID parameter is required.' });
     }
@@ -83,7 +82,7 @@ const updateContact = async (req, res) => {
     if (req.body?.phone) contact.phone = phone;
 
     const updatedContact = await contact.save();
-    
+
     res.json(updatedContact);
 }
 
@@ -92,7 +91,9 @@ const updateContact = async (req, res) => {
 // @access - public
 
 const deleteContact = async (req, res) => {
-    if (!req?.body?._id) return res.status(400).json({ 'message': 'contact ID required.' });
+
+    const { _id } = req.body
+    if (!_id) return res.status(400).json({ 'message': 'contact ID required.' });
 
     const contact = await Contact.findOne({ _id }).exec();
     if (!contact) {

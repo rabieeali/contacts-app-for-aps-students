@@ -1,33 +1,10 @@
-@font-face {
-  font-family: Roboto;
-  src: url(/public/font/Roboto-Regular.ttf);
-}
-
-* {
-  font-family: Roboto;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
 .italic {
   font-style: italic;
   color: #666;
-}
-
-.text-blue {
-  color: #211ed9;
-  cursor: pointer;
-  text-decoration: underline;
-  font-weight: 900;
-}
-
-.text-blue:hover {
-  color: #514ef0;
+  background-color: #f1f5f9;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .text-red {
